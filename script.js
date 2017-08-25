@@ -3,11 +3,18 @@ window.onload = function(){
 }
 function runThis() {
   let palColors = ['deeppink', 'pink', 'red', 'darkred', 'firebrick',
-                   'orange', 'darkorange', 'tomato', 'gold', 'yellow',
+                   'white', 'darkorange', 'tomato', 'gold', 'yellow',
                    'peachpuff', 'maroon', 'brown', 'chocolate', 'green',
                    'darkgreen', 'lime', 'teal', 'blue', 'navy',
                    'lightskyblue', 'indigo', 'purple', 'gray', 'black' ];
   let currentColor = palColors[0];
+  let toggleClick = false;
+  window.addEventListener('mousedown', function(){
+    toggleClick = true;
+  })
+  window.addEventListener('mouseup', function(){
+    toggleClick = false;
+  })
 
   function makeGrid(){
     for (let i = 0; i < 2000; i++) {
@@ -17,6 +24,12 @@ function runThis() {
       newDiv.addEventListener('click', function(ev){
         let clicked = ev.target;
         clicked.style.backgroundColor = currentColor;
+      })
+      newDiv.addEventListener('mouseenter', function(ev){
+        let clicked = ev.target;
+        if(toggleClick){
+          clicked.style.backgroundColor = currentColor;
+        }
       })
     }
   }
@@ -31,6 +44,9 @@ function runThis() {
           let clicked = ev.target;
           currentColor = clicked.style.backgroundColor;
           currentColorDiv.style.backgroundColor = currentColor;
+        })
+        colorDiv.addEventListener('mousedown', function(ev){
+
         })
     }
   }
